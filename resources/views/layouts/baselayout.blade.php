@@ -16,7 +16,7 @@
     </style>
 </head>
 
-@yield('partials.navbar')
+@include('partials.navbar')
 
 <body>
 <div class="container">
