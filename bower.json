@@ -1,0 +1,7 @@
+{
+    "name": "mcdb",
+    "dependencies": {
+      "bootstrap": "~3.3.5",
+      "jquery.tablesorter": "~2.25"
+    }
+}
