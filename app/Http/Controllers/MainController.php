@@ -2,22 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\ModelsRepository;
+
 class MainController extends Controller
 {
-    public function __construct()
-    {
+    protected $modelDb;
 
+    public function __construct(ModelsRepository $modelsRepository)
+    {
+        $this->modelDb = $modelsRepository;
     }
 
     public function getIndex()
     {
         $factions = ['All' => '', '10T' => 'Ten Thunders', 'Gremlins' => 'Gremlins'];
-        $masters = $factions;
-        $henchmen = [];
-        $totems = [];
-        $enforcers = [];
-        $minions = [];
-        $peons = [];
+        $masters = $this->modelDb->getMasters();
+        $henchmen = $this->modelDb->getHenchmen();
+        $totems = $this->modelDb->getTotems();
+        $enforcers = $this->modelDb->getEnforcers();
+        $minions = $this->modelDb->getMinions();
+        $peons = $this->modelDb->getPeons();
+//        dd($masters);
         return view('index', [
                 'factions' => $factions,
                 'factionsSelect' => array_keys($factions),
