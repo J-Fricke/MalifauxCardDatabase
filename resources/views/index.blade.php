@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="row">
-        <h1>Malifaux Card Database</h1>
+        <h1>Malifaux Card Database - Models Grouped by Type</h1>
         Faction: {!! Form::select('size', $factionsSelect, 'all') !!}
         @include('partials.table', ['id' => 'factionsTable', 'tableData' => $factions])
         <br>
