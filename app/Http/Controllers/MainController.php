@@ -36,4 +36,27 @@ class MainController extends Controller
             ]
         );
     }
+
+    public function getModel($id) {
+        $model = $this->modelDb->getModel($id);
+        $abilities = $this->modelDb->getModelAbilities($id);
+        $traits = $this->modelDb->getModelTraits($id);
+        $keywords = $this->modelDb->getModelKeywords($id);
+        $actions = $this->modelDb->getModelActions($id);
+        $factions = $this->modelDb->getModelFactions($id);
+        $upgrades = $this->modelDb->getModelUpgrades($id);
+        $triggers = $this->modelDb->getModelTriggers($id);
+        $groups = $this->modelDb->getModelGroups($id);
+        return view('model', [
+            'model' => $model,
+            'abilities' => $abilities,
+            'traits' => $traits,
+            'keywords' => $keywords,
+            'actions' => $actions,
+            'factions' => $factions,
+            'upgrades' => $upgrades,
+            'triggers' => $triggers,
+            'groups' => $groups,
+        ]);
+    }
 }

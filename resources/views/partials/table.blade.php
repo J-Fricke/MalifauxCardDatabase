@@ -1,4 +1,4 @@
-<table id="{{$id}}" class="table tablesorter">
+<table id="{{$id}}" class="table {{ $sortable or '' }}">
     @foreach ($tableData as $k => $data)
         @if(is_string($data))
             <tr>
@@ -6,21 +6,31 @@
             </tr>
         @else
             @if($k === 0)
-                <thead>
-                <tr>
-                    @foreach ($data as $name => $column)
-                        @if($name !== 'id')
-                            <th>{{$name}}</th>
-                        @endif
-                    @endforeach
-                </tr>
-                </thead>
+                @if (count($data) > 2)
+                    <thead>
+                    <tr>
+                        @foreach ($data as $name => $column)
+                            @if($name !== 'id')
+                                <th>{{ $name }}</th>
+                            @endif
+                        @endforeach
+                    </tr>
+                    </thead>
+                @endif
                 <tbody>
             @endif
             <tr>
                 @foreach ($data as $name => $column)
                     @if($name !== 'id')
-                        <td>{{$column}}</td>
+                        @if($name === 'name')
+                            @if($id !== 'modelTable')
+                            <td>{!! link_to(URL::action('MainController@getModel').'/'.$data->id, $title = $column, $parameters = array(), $attributes = array()) !!}</td>
+                            @else
+                                <td>{{  $column }}</td>
+                            @endif
+                        @else
+                            <td>{{ $column }}</td>
+                        @endif
                     @endif
                 @endforeach
             </tr>
@@ -28,8 +38,10 @@
     @endforeach
     </tbody>
 </table>
-<script type="text/javascript">
-    $(function () {
-        $("{{"#".$id}}").tablesorter();
-    });
-</script>
+@if(isset($sortable))
+    <script type="text/javascript">
+        $(function () {
+            $("{{"#".$id}}").tablesorter();
+        });
+    </script>
+@endif
