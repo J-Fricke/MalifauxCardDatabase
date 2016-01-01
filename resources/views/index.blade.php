@@ -17,7 +17,7 @@
         Totems
         @include('partials.table', ['id' => 'totemsTable', 'tableData' => $totems, 'sortable' => 'tablesorter'])
         <br>
-        Enforces
+        Enforcers
         @include('partials.table', ['id' => 'enforcersTable', 'tableData' => $enforcers, 'sortable' => 'tablesorter'])
         <br>
         Minions
