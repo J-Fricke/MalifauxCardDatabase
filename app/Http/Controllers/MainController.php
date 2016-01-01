@@ -37,7 +37,22 @@ class MainController extends Controller
         );
     }
 
-    public function getModel($id) {
+    public function getModel($id)
+    {
+        return view('model', $this->getModelData($id));
+    }
+
+    public function getModelModal($id)
+    {
+        return view('modelModal', $this->getModelData($id));
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    private function getModelData($id)
+    {
         $model = $this->modelDb->getModel($id);
         $abilities = $this->modelDb->getModelAbilities($id);
         $traits = $this->modelDb->getModelTraits($id);
@@ -47,16 +62,6 @@ class MainController extends Controller
         $upgrades = $this->modelDb->getModelUpgrades($id);
         $triggers = $this->modelDb->getModelTriggers($id);
         $groups = $this->modelDb->getModelGroups($id);
-        return view('model', [
-            'model' => $model,
-            'abilities' => $abilities,
-            'traits' => $traits,
-            'keywords' => $keywords,
-            'actions' => $actions,
-            'factions' => $factions,
-            'upgrades' => $upgrades,
-            'triggers' => $triggers,
-            'groups' => $groups,
-        ]);
+        return ['id' => $id, 'model' => $model, 'abilities' => $abilities, 'traits' => $traits, 'keywords' => $keywords, 'actions' => $actions, 'factions' => $factions, 'upgrades' => $upgrades, 'triggers' => $triggers, 'groups' => $groups];
     }
 }

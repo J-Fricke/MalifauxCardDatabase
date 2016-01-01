@@ -6,7 +6,7 @@
             </tr>
         @else
             @if($k === 0)
-                @if (count($data) > 2)
+                @if (count((array)$data) > 2)
                     <thead>
                     <tr>
                         @foreach ($data as $name => $column)
@@ -24,7 +24,9 @@
                     @if($name !== 'id')
                         @if($name === 'name')
                             @if($id !== 'modelTable')
-                            <td>{!! link_to(URL::action('MainController@getModel').'/'.$data->id, $title = $column, $parameters = array(), $attributes = array()) !!}</td>
+                                <td>
+                                    @include('partials.modelModal')
+                                </td>
                             @else
                                 <td>{{  $column }}</td>
                             @endif
