@@ -9,6 +9,9 @@ class ModelsRepository
 
     protected $table = 'models';
 
+    public function getFactions() {
+        return DB::table('factions')->select('*')->get();
+    }
     public function getMasters() {
         return $this->getModelsByTrait('master');
     }

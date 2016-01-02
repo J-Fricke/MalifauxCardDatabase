@@ -15,7 +15,7 @@ class MainController extends Controller
 
     public function getIndex()
     {
-        $factions = ['All' => '', '10T' => 'Ten Thunders', 'Gremlins' => 'Gremlins'];
+        $factions = $this->getFactions();
         $masters = $this->modelDb->getMasters();
         $henchmen = $this->modelDb->getHenchmen();
         $totems = $this->modelDb->getTotems();
@@ -63,5 +63,16 @@ class MainController extends Controller
         $triggers = $this->modelDb->getModelTriggers($id);
         $groups = $this->modelDb->getModelGroups($id);
         return ['id' => $id, 'model' => $model, 'abilities' => $abilities, 'traits' => $traits, 'keywords' => $keywords, 'actions' => $actions, 'factions' => $factions, 'upgrades' => $upgrades, 'triggers' => $triggers, 'groups' => $groups];
+    }
+
+    private function getFactions()
+    {
+        $factionsBase = $this->modelDb->getFactions();
+        $allFactions = new \stdClass();
+        $allFactions->id = '';
+        $allFactions->faction = 'All';
+        array_unshift($factionsBase, $allFactions);
+
+        return $factionsBase;
     }
 }
