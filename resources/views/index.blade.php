@@ -29,14 +29,15 @@
     <script type="text/javascript">
         function getUserAgentCommandKey() {
             var isMac = navigator.platform.toUpperCase().indexOf('MAC')>=0;
+            var browser = getBrowser();
             if (isMac) {
-                if (getBrowser() == 'Opera') {
+                if (browser == 'Opera') {
                     return 17;
                 }
-                if (getBrowser() == 'Chrome' || getBrowser() == 'Safari') {
+                if (browser == 'Chrome' || browser == 'Safari') {
                     return 91;
 //                WebKit (Safari/Chrome): 91 (Left Apple) or 93 (Right Apple);
-                } else if (getBrowser() == 'Firefox') {
+                } else if (browser == 'Firefox') {
                     return 224;
                 } else {
                     return 91;
