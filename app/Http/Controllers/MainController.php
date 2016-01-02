@@ -15,26 +15,8 @@ class MainController extends Controller
 
     public function getIndex()
     {
-        $factions = $this->getFactions();
-        $masters = $this->modelDb->getMasters();
-        $henchmen = $this->modelDb->getHenchmen();
-        $totems = $this->modelDb->getTotems();
-        $enforcers = $this->modelDb->getEnforcers();
-        $minions = $this->modelDb->getMinions();
-        $peons = $this->modelDb->getPeons();
-//        dd($masters);
-        return view('index', [
-                'factions' => $factions,
-                'factionsSelect' => array_keys($factions),
-                'masters' => $masters,
-                'mastersSelect' => array_keys($masters),
-                'henchmen' => $henchmen,
-                'totems' => $totems,
-                'enforcers' => $enforcers,
-                'minions' => $minions,
-                'peons' => $peons,
-            ]
-        );
+        $factionModels = $this->getFactionModels();
+        return view('index', ['factions' => $factionModels]);
     }
 
     public function getModel($id)
@@ -65,14 +47,29 @@ class MainController extends Controller
         return ['id' => $id, 'model' => $model, 'abilities' => $abilities, 'traits' => $traits, 'keywords' => $keywords, 'actions' => $actions, 'factions' => $factions, 'upgrades' => $upgrades, 'triggers' => $triggers, 'groups' => $groups];
     }
 
-    private function getFactions()
+    private function getFactionModels()
     {
-        $factionsBase = $this->modelDb->getFactions();
+        $factions = $this->modelDb->getFactions();
         $allFactions = new \stdClass();
-        $allFactions->id = '';
+        $allFactions->id = 0;
         $allFactions->faction = 'All';
-        array_unshift($factionsBase, $allFactions);
+        $allFactions->models = $this->getModelsGroupedByTrait();
+        foreach ($factions as $id => $faction) {
+            $factions[$id]->models = $this->getModelsGroupedByTrait($faction->faction);
+        }
+        array_unshift($factions, $allFactions);
 
-        return $factionsBase;
+        return $factions;
+    }
+    private function getModelsGroupedByTrait($faction = false)
+    {
+        return [
+            'masters' => $this->modelDb->getFactionMasters($faction),
+            'henchmen' => $this->modelDb->getFactionHenchmen($faction),
+            'totems' => $this->modelDb->getFactionTotems($faction),
+            'enforcers' => $this->modelDb->getFactionEnforcers($faction),
+            'minions' =>$this->modelDb->getFactionMinions($faction),
+            'peons' => $this->modelDb->getFactionPeons($faction)
+        ];
     }
 }

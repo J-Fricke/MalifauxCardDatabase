@@ -12,28 +12,28 @@ class ModelsRepository
     public function getFactions() {
         return DB::table('factions')->select('*')->get();
     }
-    public function getMasters() {
-        return $this->getModelsByTrait('master');
+    public function getFactionMasters($faction) {
+        return $this->getFactionModelsByTrait('master', $faction);
     }
 
-    public function getHenchmen() {
-        return $this->getModelsByTrait('henchman');
+    public function getFactionHenchmen($faction) {
+        return $this->getFactionModelsByTrait('henchman', $faction);
     }
 
-    public function getTotems() {
-        return $this->getModelsByTrait('totem');
+    public function getFactionTotems($faction) {
+        return $this->getFactionModelsByTrait('totem', $faction);
     }
 
-    public function getEnforcers() {
-        return $this->getModelsByTrait('enforcer');
+    public function getFactionEnforcers($faction) {
+        return $this->getFactionModelsByTrait('enforcer', $faction);
     }
 
-    public function getMinions() {
-        return $this->getModelsByTrait('minino');
+    public function getFactionMinions($faction) {
+        return $this->getFactionModelsByTrait('minion', $faction);
     }
 
-    public function getPeons() {
-        return $this->getModelsByTrait('peon');
+    public function getFactionPeons($faction) {
+        return $this->getFactionModelsByTrait('peon', $faction);
     }
 
     public function getModel($id)
@@ -94,11 +94,17 @@ class ModelsRepository
 
     /**
      * @param $trait
+     * @param $faction
      * @return mixed
      */
-    private function getModelsByTrait($trait)
+    private function getFactionModelsByTrait($trait, $faction)
     {
-        return DB::table($this->table)->select($this->table . '.*')->leftJoin('modelAbilities', $this->table . '.id', '=', 'modelAbilities.model_id')->leftJoin('modelActions', $this->table . '.id', '=', 'modelActions.model_id')->leftJoin('modelGroups', $this->table . '.id', '=', 'modelGroups.model_id')->leftJoin('modelKeywords', $this->table . '.id', '=', 'modelKeywords.model_id')->join('modelTraits', $this->table . '.id', '=', 'modelTraits.model_id')->join('traits', 'modelTraits.trait_id', '=', 'traits.id')->leftJoin('modelTriggers', $this->table . '.id', '=', 'modelTriggers.model_id')->where('traits.trait', '=', $trait)->get();
+        $dbCall = DB::table($this->table)->select($this->table . '.*')->leftJoin('modelFactions', $this->table.'.id', '=', 'modelFactions.model_id')->leftJoin('factions', 'modelFactions.faction_id', '=', 'factions.id')->leftJoin('modelAbilities', $this->table . '.id', '=', 'modelAbilities.model_id')->leftJoin('modelActions', $this->table . '.id', '=', 'modelActions.model_id')->leftJoin('modelGroups', $this->table . '.id', '=', 'modelGroups.model_id')->leftJoin('modelKeywords', $this->table . '.id', '=', 'modelKeywords.model_id')->join('modelTraits', $this->table . '.id', '=', 'modelTraits.model_id')->join('traits', 'modelTraits.trait_id', '=', 'traits.id')->leftJoin('modelTriggers', $this->table . '.id', '=', 'modelTriggers.model_id')->where('traits.trait', '=', $trait);
+        if ($faction) {
+            $dbCall->where('factions.faction', '=', $faction);
+        }
+
+        return $dbCall->get();
     }
 
     /**
