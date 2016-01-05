@@ -53,7 +53,7 @@
         $('#searchForm').submit(function (e) {
             e.preventDefault();
 //            index.search($('#searchFormInput').val(), {facetFilters: ['Df:6'],hitsPerPage: 300}, function searchDone(err, results) {//@todo incorporate facetFilters to drill down data further
-            index.search($('#searchFormInput').val(), {,hitsPerPage: 300}, function searchDone(err, results) {
+            index.search($('#searchFormInput').val(), {hitsPerPage: 300}, function searchDone(err, results) {
                 console.log(results);
                 for (var i = 0; i < results.hits.length; i++) {
                     console.log(results.hits[i]);
@@ -67,7 +67,6 @@
                 }
                 tableData += "</tbody>";
                 $('#filteredModelsTable').html(tableData).tablesorter();
-//                $("#filteredModelsTable").tablesorter();
             });
             return false;
         });
