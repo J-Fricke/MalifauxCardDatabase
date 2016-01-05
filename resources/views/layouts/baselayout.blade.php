@@ -16,6 +16,7 @@
             body { padding-top: 0px; }
         }
     </style>
+    @yield('head')
 </head>
 
 @include('partials.navbar')
