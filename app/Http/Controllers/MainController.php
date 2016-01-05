@@ -28,6 +28,27 @@ class MainController extends Controller
     {
         return view('modelModal', $this->getModelData($id));
     }
+    public function getSearch()
+    {
+        return view('search', ['searchAppKey' => env('ALGOLIA_APP_ID'), 'searchApiKey' => env('ALGOLIA_API_KEY')]);
+    }
+
+    public function getUpdateIndex()
+    {
+        $models = $this->modelDb->getAllModels();
+        foreach ($models as $model) {
+            $model->factions = $this->modelDb->getModelFactions($model);
+            $model->abilities = $this->modelDb->getModelAbilities($model);
+            $model->traits = $this->modelDb->getModelTraits($model);
+            $model->keywords = $this->modelDb->getModelKeywords($model);
+            $model->actions = $this->modelDb->getModelActions($model);
+            $model->upgrades = $this->modelDb->getModelUpgrades($model);
+            $model->triggers = $this->modelDb->getModelTriggers($model);
+            $model->groups = $this->modelDb->getModelGroups($model);
+            $model->pushToIndex();
+        }
+        return redirect('/');
+    }
 
     /**
      * @param $id
@@ -35,29 +56,22 @@ class MainController extends Controller
      */
     private function getModelData($id)
     {
-        $model = $this->modelDb->getModel($id);
-        $abilities = $this->modelDb->getModelAbilities($id);
-        $traits = $this->modelDb->getModelTraits($id);
-        $keywords = $this->modelDb->getModelKeywords($id);
-        $actions = $this->modelDb->getModelActions($id);
-        $factions = $this->modelDb->getModelFactions($id);
-        $upgrades = $this->modelDb->getModelUpgrades($id);
-        $triggers = $this->modelDb->getModelTriggers($id);
-        $groups = $this->modelDb->getModelGroups($id);
-        return ['id' => $id, 'model' => $model, 'abilities' => $abilities, 'traits' => $traits, 'keywords' => $keywords, 'actions' => $actions, 'factions' => $factions, 'upgrades' => $upgrades, 'triggers' => $triggers, 'groups' => $groups];
+        return $this->modelDb->getModelData($id);
     }
 
     private function getFactionModels()
     {
-        $factions = $this->modelDb->getFactions();
+        $factionsCollection = $this->modelDb->getFactions();
         $allFactions = new \stdClass();
         $allFactions->id = 0;
         $allFactions->faction = 'All';
         $allFactions->models = $this->getModelsGroupedByTrait();
-        foreach ($factions as $id => $faction) {
-            $factions[$id]->models = $this->getModelsGroupedByTrait($faction->faction);
+        $factions = [];
+        $factions[0] = $allFactions;
+        foreach ($factionsCollection as $id => $faction) {
+            $factions[$id+1] = $faction;
+            $factions[$id+1]->models = $this->getModelsGroupedByTrait($faction->faction);
         }
-        array_unshift($factions, $allFactions);
 
         return $factions;
     }

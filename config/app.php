@@ -149,6 +149,7 @@ return [
          * Additional Service Providers
          */
         Collective\Html\HtmlServiceProvider::class,
+        AlgoliaSearch\Laravel\AlgoliaServiceProvider::class,
 
     ],
 

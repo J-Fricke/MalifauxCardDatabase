@@ -4,9 +4,107 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "35d0ea441d550fddbc6b647cb92b6d06",
-    "content-hash": "26320ca470b81d73bd4a830b7b0ec1e1",
+    "hash": "2c8b08d1a1df6c29d9e30e4d78782488",
+    "content-hash": "b4503960204b596b4b1da94165406601",
     "packages": [
+        {
+            "name": "algolia/algoliasearch-client-php",
+            "version": "1.6.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/algolia/algoliasearch-client-php.git",
+                "reference": "cb3a70a451f1d7883eebe1ce13c9d6e343df4f89"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/algolia/algoliasearch-client-php/zipball/cb3a70a451f1d7883eebe1ce13c9d6e343df4f89",
+                "reference": "cb3a70a451f1d7883eebe1ce13c9d6e343df4f89",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8 || ^5.0",
+                "satooshi/php-coveralls": "0.6.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "AlgoliaSearch": "src/",
+                    "AlgoliaSearch\\Tests": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Algolia Team",
+                    "email": "contact@algolia.com"
+                },
+                {
+                    "name": "Ryan T. Catlin",
+                    "email": "ryan.catlin@gmail.com"
+                },
+                {
+                    "name": "Jonathan H. Wage",
+                    "email": "jonwage@gmail.com"
+                }
+            ],
+            "description": "Algolia Search API Client for PHP",
+            "homepage": "https://github.com/algolia/algoliasearch-client-php",
+            "time": "2015-12-07 09:43:01"
+        },
+        {
+            "name": "algolia/algoliasearch-laravel",
+            "version": "1.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/algolia/algoliasearch-laravel.git",
+                "reference": "f87ab9704cbf520b0f21820ee5652017609638fb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/algolia/algoliasearch-laravel/zipball/f87ab9704cbf520b0f21820ee5652017609638fb",
+                "reference": "f87ab9704cbf520b0f21820ee5652017609638fb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "vinkla/algolia": "~2.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "orchestra/testbench": "3.1.*",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "AlgoliaSearch\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Laravel Algolia extension",
+            "keywords": [
+                "algolia",
+                "api",
+                "laravel",
+                "search"
+            ],
+            "time": "2015-11-18 14:52:34"
+        },
         {
             "name": "classpreloader/classpreloader",
             "version": "3.0.0",
@@ -218,6 +316,65 @@
             "time": "2015-11-06 14:35:42"
         },
         {
+            "name": "graham-campbell/manager",
+            "version": "v2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GrahamCampbell/Laravel-Manager.git",
+                "reference": "fd643e56c99cc80cd8019be1bbaeb4f4f66ebb8e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Manager/zipball/fd643e56c99cc80cd8019be1bbaeb4f4f66ebb8e",
+                "reference": "fd643e56c99cc80cd8019be1bbaeb4f4f66ebb8e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "5.1.*|5.2.*",
+                "illuminate/support": "5.1.*|5.2.*",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "graham-campbell/testbench-core": "^1.1",
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^4.8|^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GrahamCampbell\\Manager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Graham Campbell",
+                    "email": "graham@alt-three.com"
+                }
+            ],
+            "description": "Manager Provides Some Manager Functionality For Laravel 5",
+            "keywords": [
+                "Graham Campbell",
+                "GrahamCampbell",
+                "Laravel Manager",
+                "Laravel-Manager",
+                "connector",
+                "framework",
+                "interface",
+                "laravel",
+                "manager"
+            ],
+            "time": "2015-11-14 11:41:39"
+        },
+        {
             "name": "jakub-onderka/php-console-color",
             "version": "0.1",
             "source": {
@@ -364,16 +521,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.1.27",
+            "version": "v5.1.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "b16f80878fd3603022d3c84593397cedd9af0bcf"
+                "reference": "3f0fd27939dfdafb1e50058423cd24e640894ba2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/b16f80878fd3603022d3c84593397cedd9af0bcf",
-                "reference": "b16f80878fd3603022d3c84593397cedd9af0bcf",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/3f0fd27939dfdafb1e50058423cd24e640894ba2",
+                "reference": "3f0fd27939dfdafb1e50058423cd24e640894ba2",
                 "shasum": ""
             },
             "require": {
@@ -488,7 +645,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-12-17 20:35:38"
+            "time": "2015-12-31 17:41:30"
         },
         {
             "name": "laravelcollective/html",
@@ -1877,6 +2034,62 @@
             "time": "2015-12-05 10:02:55"
         },
         {
+            "name": "vinkla/algolia",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vinkla/algolia.git",
+                "reference": "ced485824a5d583ececb43d4df53e02e5a8a7148"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vinkla/algolia/zipball/ced485824a5d583ececb43d4df53e02e5a8a7148",
+                "reference": "ced485824a5d583ececb43d4df53e02e5a8a7148",
+                "shasum": ""
+            },
+            "require": {
+                "algolia/algoliasearch-client-php": "^1.6",
+                "graham-campbell/manager": "^2.3",
+                "illuminate/contracts": "5.1.* || 5.2.*",
+                "illuminate/support": "5.1.* || 5.2.*",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "graham-campbell/testbench": "^3.1",
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^4.8 || ^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vinkla\\Algolia\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vincent Klaiber",
+                    "email": "hello@vinkla.com"
+                }
+            ],
+            "description": "An Algolia bridge for Laravel",
+            "keywords": [
+                "algolia",
+                "api",
+                "laravel",
+                "search"
+            ],
+            "time": "2015-11-14 18:50:04"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v1.1.1",
             "source": {
@@ -2225,16 +2438,16 @@
         },
         {
             "name": "phpspec/phpspec",
-            "version": "2.4.0",
+            "version": "2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/phpspec.git",
-                "reference": "1d3938e6d9ffb1bd4805ea8ddac62ea48767f358"
+                "reference": "5528ce1e93a1efa090c9404aba3395c329b4e6ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/1d3938e6d9ffb1bd4805ea8ddac62ea48767f358",
-                "reference": "1d3938e6d9ffb1bd4805ea8ddac62ea48767f358",
+                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/5528ce1e93a1efa090c9404aba3395c329b4e6ed",
+                "reference": "5528ce1e93a1efa090c9404aba3395c329b4e6ed",
                 "shasum": ""
             },
             "require": {
@@ -2299,7 +2512,7 @@
                 "testing",
                 "tests"
             ],
-            "time": "2015-11-29 02:03:49"
+            "time": "2016-01-01 10:17:54"
         },
         {
             "name": "phpspec/prophecy",
