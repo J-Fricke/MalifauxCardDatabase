@@ -12,6 +12,7 @@ class Models extends Model
     public $timestamps = false;
     public $table = 'models';
     protected $hidden = ['pivot'];
+    protected $fillable = ['name', 'cost', 'cache', 'Df', 'Wp', 'Wd', 'Wk', 'Cg', 'Ht', 'base_size'];
 
     public function factions()
     {

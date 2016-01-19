@@ -50,6 +50,13 @@ class MainController extends Controller
         return redirect('/');
     }
 
+    public function getAddModel()
+    {
+        $modelFields = $this->modelDb->getFields();
+        $factions = $this->modelDb->getFactions();
+        return view('addModel', ['modelFields' => $modelFields, 'factions' => $factions]);
+    }
+
     /**
      * @param $id
      * @return array

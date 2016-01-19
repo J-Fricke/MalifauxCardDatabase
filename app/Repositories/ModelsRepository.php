@@ -138,4 +138,9 @@ class ModelsRepository
         }
         return $returnModel;
     }
+
+    public function getFields()
+    {
+        return Models::findOrNew(0)->getFillable();
+    }
 }
